@@ -1,6 +1,25 @@
-.App {
-  text-align: center;
+html, body, #root, .App{
+  height: 100%;
 }
+.App {
+  /* text-align: center; */
+  // padding: 2rem 0px;
+  background-color: #123242;
+  height: 100%;
+}
+
+.form{
+  background-color: white;
+  label{
+    font-size: 1rem;
+    color: gray;
+    margin-bottom: .4rem;
+  }
+  .css-hdw1oc{
+    display: none;
+  }
+}
+
 
 .App-logo {
   height: 40vmin;

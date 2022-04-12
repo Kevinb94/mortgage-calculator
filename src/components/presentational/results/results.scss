@@ -1,0 +1,79 @@
+#results-page{
+    height: 100%;
+    color: white;
+    padding-top: 2rem;
+    width: 90%;
+    margin: 0 auto;
+    .text-results{
+        height: 30%;
+        display: grid;
+        padding-bottom: .3rem;
+    }
+    .button-wrapper{
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+        .save-results-button{
+            width: 91%;
+        }
+    }
+
+    .desktop-chart-container{
+        margin-top: 1rem;
+
+    }
+
+    .chart-container{
+        height: 45%;
+        display: grid;
+        margin-bottom: 3rem;
+        text-align: center;
+
+        .center-text{
+
+            text-align: center;
+            p{
+                font-size: 1.5rem;
+            }
+            .small-text{
+                font-size: .7rem;
+            }
+        }
+    }
+
+    .estimated-payment-info{
+        text-align: center;
+        h4{
+            font-size: 1.5rem;
+        }
+        span{
+            font-size: .7rem;
+        }
+    }
+    @media only screen and (min-width: 791px) {
+        .chart-container {
+          height: 30%;
+        }
+        .estimated-payment-info{
+            h4{
+                font-size: 2rem;
+            }
+          }
+
+      }
+    @media only screen and (max-width: 790px) {
+        .chart-container {
+          height: 25%;
+          margin: 2rem 0;
+        }
+
+        .text-results{
+            height: 25%;
+            .text-result{
+                padding-bottom: .3rem;
+            }
+        }
+      }
+}
+
+

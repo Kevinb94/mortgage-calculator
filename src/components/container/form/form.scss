@@ -1,0 +1,25 @@
+.form-container{
+    background-color: white;
+    height: 100%;
+    padding: 8px;
+    align-content: "flex-start";
+    padding-top: 2rem;
+
+    .textfield-form{
+        display: grid;
+        height: 80%;
+        width: 90%;
+        margin: 0 auto;
+        h1{
+            // margin-bottom: 3rem;
+        }
+        .MuiFormControl-root{
+            margin: 0px;
+        }
+
+        // button{
+        //     max-width: 20%;
+        //     height: 4rem;
+        // }
+    }
+}
