@@ -7,14 +7,16 @@ import { BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
+var root = document.getElementById('root');
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <App {...(root.dataset)}/>
     </BrowserRouter>
   </React.StrictMode>,
 
-  document.getElementById('root')
+  root
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -28,6 +28,12 @@ const MyButton = muiStyled("button")(({ theme }) => ({
   },
 }));
 
+const FormDiv = styled.div`
+  /* Adapt the colors based on primary prop */
+
+  display: grid;
+`;
+
 function Form(props) {
   const InputTypes = props.type;
   const [values, setValues] = React.useState({
@@ -47,13 +53,8 @@ function Form(props) {
       {InputTypes == "text" ? textFieldForm() : sliderForm()}
     </div>
   );
-
+  // height: ${props.device == "desktop" ? "80%" : "70%"};
   function textFieldForm() {
-    const FormDiv = styled.div`
-      /* Adapt the colors based on primary prop */
-      height: ${props.device == "desktop" ? "80%" : "70%"};
-      display: grid;
-    `;
     return (
       <FormDiv className="textfield-form">
         {/* <div className="form textfield-form"> */}
@@ -101,8 +102,8 @@ function Form(props) {
           </Select>
         </FormControl>
 
-        {props.isMobile ? (
-          <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <div className="button-group">
+          <FormControl className="get-results">
             <Button
               onClick={() => props.toggleShowResults({ name: "Godrick" })}
               variant="contained"
@@ -110,13 +111,11 @@ function Form(props) {
               Get Results
             </Button>
           </FormControl>
-        ) : null}
 
-        {!props.isMobile ? (
-          <FormControl md={{ maxWidth: 50 }} sm={{ maxWidth: 50 }}>
-            <MyButton variant="contained">Save Results</MyButton>
+          <FormControl className="save-results">
+            <Button variant="contained">Save Results</Button>
           </FormControl>
-        ) : null}
+        </div>
       </FormDiv>
     );
   }

@@ -4,8 +4,79 @@ html, body, #root, .App{
 .App {
   /* text-align: center; */
   // padding: 2rem 0px;
-  background-color: #123242;
+  // background-color: #123242;
   height: 100%;
+  overflow: hidden;
+  .mobile{
+    height: 100%;
+    .mortgage-calculator{
+      height: 100%;
+        .desktop-chart-container{
+            display: none;
+        }
+        div{
+            svg{
+                font-size: 3rem;
+                color: white;
+                cursor: pointer;
+            }
+        }
+        #results-page{
+
+        }
+
+        .form-container{
+          .textfield-form{
+              .save-results{
+                  display: none;
+              }
+              .get-results{
+                width: 100%;
+            }
+          }
+      }
+
+
+    }
+}
+
+.desktop{
+  height: 100%;
+  .mortgage-calculator{
+      display: grid;
+      // grid-template-columns: 70% 30%;
+      height: 100%;   
+
+
+      #results-page{
+          .button-wrapper{
+              display: none;
+          }
+      }
+
+      .form-container{
+        .textfield-form{
+          .button-group{
+            display: flex;
+            gap: 10px;
+
+          }
+
+        }
+    }
+  }
+
+  .mobile-chart-container{
+      display: none;
+  }
+
+}
+
+  // .desktop{
+  //   display: grid;
+  //   grid-template-columns: 70% 30%;
+  //   height: 100%;
+  // }
 }
 
 .form{

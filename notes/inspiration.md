@@ -1,0 +1,2 @@
+- Truist
+  - https://www.truist.com/mortgage/mortgage-offer?cid=PS-GOOG-040622008&CampIDMaj=AAAFY&CampIDMin=AAA&cid=PS-GOOG-100121103&CampIDMaj=AAAAX&CampIDMin=AAA&gclid=CjwKCAjwx46TBhBhEiwArA_DjL3_Lfx2xOJzdoNkM8B6VUQjtueZlCw32-xb9dNQtxYJqtCbpYlsERoC4p0QAvD_BwE&gclsrc=aw.ds

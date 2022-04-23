@@ -3,11 +3,15 @@ import { Doughnut, Chart } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { height } from "@mui/system";
 import React, { useState, useEffect } from "react";
-import TextResult from "../text-result/text-result";
+import TextResult from "../presentational/text-result/text-result";
 import styled from "styled-components";
 import { Button } from "@mui/material";
+import { ThemeContext } from "../../context/theme-context";
 
 import "./results.scss";
+const ChartDiv = styled.div`
+  /* Adapt the colors based on primary prop */
+`;
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const data = {
@@ -72,56 +76,47 @@ const options = {
 };
 
 function Results(props) {
-  const ChartDiv = styled.div`
-    /* Adapt the colors based on primary prop */
-  `;
   return (
     <div id="results-page">
-      <div className="estimated-payment-info">
-        <p>Estimated Payment</p>
-        <h4>
-          $1,575<span>/month</span>
-        </h4>
-      </div>
+      <ThemeContext.Consumer>
+        {({ colors }) => (
+          <div style={{ color: colors.lightText, height: "100%" }}>
+            <div className="estimated-payment-info">
+              <p>Estimated Payment</p>
+              <h4>
+                $1,575<span>/month</span>
+              </h4>
+            </div>
 
-      {isCorrectDevice("mobile", props) ? (
-        <ChartDiv className="chart-container">
-          <Doughnut className="doughnut" data={data} options={options} />
-        </ChartDiv>
-      ) : null}
+            <ChartDiv className="chart-container mobile-chart-container">
+              <Doughnut className="doughnut" data={data} options={options} />
+            </ChartDiv>
 
-      {/* {isCorrectDevice("desktop", props) ? ( */}
+            <div className="text-results">
+              <TextResult amount={"200"} label={"Loan Amount"}></TextResult>
+              <TextResult amount={"400"} label={"Down Payment"}></TextResult>
+              <TextResult
+                amount={"4.171%"}
+                label={"Interest Rate"}
+              ></TextResult>
+              <TextResult amount={"200"} label={"Loan Amount"}></TextResult>
+            </div>
 
-      {/* ) : null} */}
+            <div className="button-wrapper">
+              <Button className="save-results-button" variant="contained">
+                Save Results
+              </Button>
+            </div>
 
-      <div className="text-results">
-        <TextResult amount={"200"} label={"Loan Amount"}></TextResult>
-        <TextResult amount={"400"} label={"Down Payment"}></TextResult>
-        <TextResult amount={"4.171%"} label={"Interest Rate"}></TextResult>
-        <TextResult amount={"200"} label={"Loan Amount"}></TextResult>
-      </div>
-      {isCorrectDevice("mobile", props) ? (
-        <div className="button-wrapper">
-          <Button className="save-results-button" variant="contained">
-            Save Results
-          </Button>
-        </div>
-      ) : null}
-
-      {isCorrectDevice("desktop", props) ? (
-        <div className="chart-container desktop-chart-container">
-          <p>Payment Breakdown</p>
-          <Doughnut data={data} options={options} />
-        </div>
-      ) : null}
+            <div className="chart-container desktop-chart-container">
+              <p>Payment Breakdown</p>
+              <Doughnut data={data} options={options} />
+            </div>
+          </div>
+        )}
+      </ThemeContext.Consumer>
     </div>
   );
-
-  function isCorrectDevice(deviceType, props) {
-    if (props.device == deviceType) {
-      return true;
-    }
-  }
 }
 
 export default Results;

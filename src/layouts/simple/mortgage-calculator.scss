@@ -1,0 +1,39 @@
+.mobile{
+    .mortgage-calculator{
+        .desktop-chart-container{
+            display: none;
+        }
+        div{
+            svg{
+                font-size: 3rem;
+                color: white;
+                cursor: pointer;
+            }
+        }
+        #results-page{
+
+        }
+
+
+    }
+}
+
+.desktop{
+    .mortgage-calculator{
+        display: grid;
+        grid-template-columns: 70% 30%;
+        height: 100%;   
+
+
+        #results-page{
+            .button-wrapper{
+                display: none;
+            }
+        }
+    }
+
+    .mobile-chart-container{
+        display: none;
+    }
+
+}

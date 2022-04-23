@@ -1,0 +1,11 @@
+{
+  "foo": "bar",
+  "colors": {
+    "primary": "",
+    "secondary": "",
+    "light": "white",
+    "dark": "#123242",
+    "lightText": "white"
+  },
+  "layout": "detailed"
+}
