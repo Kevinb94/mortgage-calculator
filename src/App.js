@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo from "./logo.svg";
 import "./App.scss";
 import useSize from './hooks/useSize';
-import MortgageCalculatorDesktop from './layouts/simple/mortgage-calculator-desktop';
-import MortgageCalculatorMobile from "./layouts/simple/mortgage-calculator-mobile";
 import styled  from 'styled-components';
-import { DriveEtaRounded } from '@mui/icons-material';
 import {ThemeContext, themes} from './context/theme-context';
 import  MortgageCalculator  from './layouts/simple/mortgage-calculator';
 import MortgageCalculatorDetailed from './layouts/detailed/mortgage-calculator-detailed.component';
@@ -55,10 +52,10 @@ const App = (props) => {
               <Route path="/" element={<MortgageCalculator getDeviceType={getDeviceType}></MortgageCalculator>}></Route>
               <Route path="/simple" element={<MortgageCalculator getDeviceType={getDeviceType}></MortgageCalculator>}></Route>
               <Route path="/detailed" element={<MortgageCalculatorDetailed getDeviceType={getDeviceType}></MortgageCalculatorDetailed>} ></Route>
-              <Route
+              {/* <Route
                 path="*"
                 element={<Navigate to="/" />}
-              />
+              /> */}
             </Routes>
 
           </div>

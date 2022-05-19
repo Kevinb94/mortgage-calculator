@@ -5,7 +5,15 @@
     "secondary": "",
     "light": "white",
     "dark": "#123242",
-    "lightText": "white"
+    "lightText": "white",
+    "headerText": "Red",
+    "formLabels": "purple",
+    "lightButton": "blue",
+    "darkButton": "orange"
   },
-  "layout": "detailed"
+  "fontSizes": {
+    "formLabels": "3em",
+    "headerText": "2.5rem"
+  },
+  "layout": "simple"
 }

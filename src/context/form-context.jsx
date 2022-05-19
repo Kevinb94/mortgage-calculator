@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
 
-export const formDefaults = {
-    page: 'sliders',
-    setPage: () => {}
-  };
-  
-const FormContext = React.createContext(  formDefaults.page );
-export default  FormContext;
+export const FormContext = React.createContext({
+  price: "",
+  downPaymentType: "",
+  downPayment: "",
+  interestRate: "",
+  loanTerm: "",
+  setForm: () => {},
+});

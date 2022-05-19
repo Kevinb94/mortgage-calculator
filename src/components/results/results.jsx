@@ -2,11 +2,12 @@ import { Bar } from "react-chartjs-2";
 import { Doughnut, Chart } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { height } from "@mui/system";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import TextResult from "../presentational/text-result/text-result";
 import styled from "styled-components";
 import { Button } from "@mui/material";
 import { ThemeContext } from "../../context/theme-context";
+import { FormContext } from "../../context/form-context";
 
 import "./results.scss";
 const ChartDiv = styled.div`
@@ -76,6 +77,7 @@ const options = {
 };
 
 function Results(props) {
+  const { form, setForm } = useContext(FormContext);
   return (
     <div id="results-page">
       <ThemeContext.Consumer>
@@ -86,6 +88,7 @@ function Results(props) {
               <h4>
                 $1,575<span>/month</span>
               </h4>
+              {form.downPayment}
             </div>
 
             <ChartDiv className="chart-container mobile-chart-container">

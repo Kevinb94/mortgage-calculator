@@ -7,7 +7,12 @@ export const ThemeContext = React.createContext({
         secondary: "",
         light: "yellow",
         dark: "black",
-        lightText: "pink"
+        lightText: "pink",
+        headerText: "black",
+        formLabels: "black"
+    },
+    fontSizes: {
+        formLabels: "3em"
     }
 
 });
