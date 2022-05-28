@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.scss";
 import useSize from './hooks/useSize';
 import styled  from 'styled-components';
+import ThemeJson from './assets/theme.json';
 import {ThemeContext, themes} from './context/theme-context';
 import  MortgageCalculator  from './layouts/simple/mortgage-calculator';
 import MortgageCalculatorDetailed from './layouts/detailed/mortgage-calculator-detailed.component';
@@ -14,7 +15,7 @@ import {
 } from "react-router-dom";
 
   const AppDiv = styled.div`
-    background-color: ${props => props.theme.colors ? props.theme.colors.dark : "black"};
+    background-color: ${props => props.theme.colors ? props.theme.colors.resultsBackgroundColor : "black"};
   `;
 
 
@@ -28,14 +29,31 @@ const App = (props) => {
   useEffect(() => {    
     // Update the document title using the browser API 
     const configJson = JSON.parse(props.config);
+    let defaults = ThemeJson;
 
-    setTheme(configJson);
-    console.log(configJson);
+    let combined = {};
+    objCombine(defaults, combined);
+    objCombine(configJson, combined);
+
+    setTheme(combined);
+
 
     navigate(`../${configJson.layout}`, { replace: true });
   }, [props]);
 
-  
+  function objCombine(obj, variable) {
+    for (let key of Object.keys(obj)) {
+      if(typeof obj[key] == "object"){
+        if (!variable[key]) variable[key] = {};
+      
+        for (let innerKey of Object.keys(obj[key]))
+        variable[key][innerKey] = obj[key][innerKey];
+      }else{
+        variable[key] = obj[key];
+      }
+
+    }
+  }
 
  
   return (

@@ -1,15 +1,15 @@
 {
   "foo": "bar",
   "colors": {
-    "primary": "",
-    "secondary": "",
-    "light": "white",
-    "dark": "#123242",
-    "lightText": "white",
+    "formBackgroundColor": "white",
+    "resultsBackgroundColor": "#123242",
+    "resultButtonText": "white",
+    "resultsText": "white",
     "headerText": "Red",
     "formLabels": "purple",
-    "lightButton": "blue",
-    "darkButton": "orange"
+    "formButton": "blue",
+    "resultButton": "orange",
+    "borderBottom": "#c1c1c166"
   },
   "fontSizes": {
     "formLabels": "3em",

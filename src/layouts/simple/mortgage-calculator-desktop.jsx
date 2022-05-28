@@ -20,7 +20,7 @@ export default function MortgageCalculatorDesktop() {
         width: "100%",
       }}
     >
-      <Form type="text" toggleShowResults={toggleResults} />
+      <Form type="text" />
       <Results userInput={formData} />
     </div>
   );

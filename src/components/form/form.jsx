@@ -37,13 +37,21 @@ const FormButton = styled.button`
   border: none;
   border-radius: 0.4em;
   background-color: ${(props) =>
-    props.colors ? props.colors.lightButton : "black"};
+    props.colors ? props.colors.formButton : "black"};
 `;
 
 const FormDiv = styled.div`
   /* Adapt the colors based on primary prop */
 
   display: grid;
+`;
+
+const FormContainer = styled.div`
+  /* Adapt the colors based on primary prop */
+
+  display: grid;
+  background-color: ${(props) =>
+    props.colors ? props.colors.formBackgroundColor : "white"};
 `;
 
 const FormLabel = styled.div`
@@ -77,14 +85,21 @@ function Form(props) {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
 
+  const getResults = (values) => {
+    setForm(values);
+    if (props.toggleShowResults) {
+      props.toggleShowResults();
+    }
+  };
+
   return (
     <ThemeContext.Consumer>
       {({ colors, fontSizes }) => (
-        <div className="form-container">
+        <FormContainer className="form-container" colors={colors}>
           {InputTypes == "text"
             ? textFieldForm(colors, fontSizes)
             : sliderForm(colors, fontSizes)}
-        </div>
+        </FormContainer>
       )}
     </ThemeContext.Consumer>
   );
@@ -145,17 +160,17 @@ function Form(props) {
             name="loanTerm"
             inputProps={{ "aria-label": "Without label" }}
           >
-            <MenuItem value={10}>30 years</MenuItem>
+            <MenuItem value={30}>30 years</MenuItem>
             <MenuItem value={20}>20 years</MenuItem>
-            <MenuItem value={30}>15 years</MenuItem>
-            <MenuItem value={30}>10 years</MenuItem>
+            <MenuItem value={15}>15 years</MenuItem>
+            <MenuItem value={10}>10 years</MenuItem>
           </Select>
         </FormControl>
 
         <div className="button-group">
           <FormControl className="get-results">
             <FormButton
-              onClick={() => setForm(values)}
+              onClick={() => getResults(values)}
               variant="contained"
               colors={colors}
             >
