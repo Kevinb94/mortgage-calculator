@@ -7,7 +7,7 @@ import TextResult from "../presentational/text-result/text-result";
 import styled from "styled-components";
 import { Button } from "@mui/material";
 import { ThemeContext } from "../../context/theme-context";
-import { FormContext } from "../../context/form-context";
+import FormContext from "../../context/form-context";
 import { EstimatedPayment } from "./calculateFunctions";
 
 import "./results.scss";

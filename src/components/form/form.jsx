@@ -13,7 +13,7 @@ import Select from "@mui/material/Select";
 import styled from "styled-components";
 import { styled as muiStyled } from "@mui/material/styles";
 import { ThemeContext } from "../../context/theme-context";
-import { FormContext } from "../../context/form-context";
+import FormContext from "../../context/form-context";
 import "./form.scss";
 
 const MyButton = muiStyled("button")(({ theme }) => ({

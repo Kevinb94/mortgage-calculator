@@ -1,7 +1,7 @@
 // In desptop display the calculator and results component side by side
 import React, { useState } from "react";
-import Form from "../../components/form/form";
-import Results from "../../components/results/results";
+import Form from "../components/form/form";
+import Results from "../components/results/results";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export default function MortgageCalculatorDesktop() {

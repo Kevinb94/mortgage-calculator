@@ -5,8 +5,9 @@ import useSize from './hooks/useSize';
 import styled  from 'styled-components';
 import ThemeJson from './assets/theme.json';
 import {ThemeContext, themes} from './context/theme-context';
-import  MortgageCalculator  from './layouts/simple/mortgage-calculator';
-import MortgageCalculatorDetailed from './layouts/detailed/mortgage-calculator-detailed.component';
+import FormContext from "./context/form-context";
+import  MortgageCalculator  from './pages/mortgage-calculator';
+// import MortgageCalculatorDetailed from './layouts/detailed/mortgage-calculator-detailed.component';
 import { useNavigate, Navigate } from "react-router-dom";
 import {
   BrowserRouter,
@@ -24,7 +25,8 @@ const App = (props) => {
   const [target, currentSize, getDeviceType] = useSize();
   const {width, height} = currentSize;
   const [theme, setTheme] = useState({});
-
+  const [form, setForm] = useState({});
+  const value = { form, setForm };
 
   useEffect(() => {    
     // Update the document title using the browser API 
@@ -60,27 +62,27 @@ const App = (props) => {
 
     <>
         <ThemeContext.Provider value={theme}>
-
-          <AppDiv theme={theme} className="App" ref={target} style={{width: "100%"}}>
-          <div className={`${getDeviceType()}`} >
-            {/* <MortgageCalculator getDeviceType={getDeviceType}></MortgageCalculator> */}
-
-
-            <Routes>
-              <Route path="/" element={<MortgageCalculator getDeviceType={getDeviceType}></MortgageCalculator>}></Route>
-              <Route path="/simple" element={<MortgageCalculator getDeviceType={getDeviceType}></MortgageCalculator>}></Route>
-              <Route path="/detailed" element={<MortgageCalculatorDetailed getDeviceType={getDeviceType}></MortgageCalculatorDetailed>} ></Route>
-              {/* <Route
-                path="*"
-                element={<Navigate to="/" />}
-              /> */}
-            </Routes>
-
-          </div>
-
-          </AppDiv>
+          <FormContext.Provider value={value}>
+            <AppDiv theme={theme} className="App" ref={target} style={{width: "100%"}}>
+            <div className={`${getDeviceType()}`} >
+              {/* <MortgageCalculator getDeviceType={getDeviceType}></MortgageCalculator> */}
 
 
+              <Routes>
+                <Route path="/" element={<MortgageCalculator getDeviceType={getDeviceType}></MortgageCalculator>}></Route>
+                <Route path="/simple" element={<MortgageCalculator getDeviceType={getDeviceType}></MortgageCalculator>}></Route>
+                {/* <Route path="/detailed" element={<MortgageCalculatorDetailed getDeviceType={getDeviceType}></MortgageCalculatorDetailed>} ></Route> */}
+                {/* <Route
+                  path="*"
+                  element={<Navigate to="/" />}
+                /> */}
+              </Routes>
+
+            </div>
+
+            </AppDiv>
+
+          </FormContext.Provider>
         </ThemeContext.Provider>
     </>
 
