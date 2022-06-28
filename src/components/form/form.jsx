@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Slider from "@mui/material/Slider";
 import FilledInput from "@mui/material/FilledInput";
@@ -70,7 +70,8 @@ const FormHeader = styled.h1`
 
 function Form(props) {
   const InputTypes = props.type;
-  const { form, setForm } = useContext(FormContext);
+  const { getEstimatedPayment, form, setForm, showResults, setToggleResults } =
+    useContext(FormContext);
   const [values, setValues] = React.useState({
     price: "",
     downPaymentType: "",
@@ -85,121 +86,103 @@ function Form(props) {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
 
-  const getResults = (values) => {
+  const getResults = () => {
     setForm(values);
-    if (props.toggleShowResults) {
-      props.toggleShowResults();
-    }
+    getEstimatedPayment();
+    setToggleResults(!showResults);
   };
 
   return (
     <ThemeContext.Consumer>
       {({ colors, fontSizes }) => (
         <FormContainer className="form-container" colors={colors}>
-          {InputTypes == "text"
-            ? textFieldForm(colors, fontSizes)
-            : sliderForm(colors, fontSizes)}
+          <FormDiv className="textfield-form">
+            {/* <div className="form textfield-form"> */}
+            <FormHeader colors={colors} fontSizes={fontSizes}>
+              Mortgage Calculator
+            </FormHeader>
+            <FormControl sx={{ m: 1 }} variant="filled">
+              {/* <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel> */}
+              <FormLabel colors={colors} fontSizes={fontSizes} htmlFor="">
+                Home Price
+              </FormLabel>
+              <FilledInput
+                id="filled-adornment-amount"
+                value={values.price}
+                onChange={handleChange}
+                startAdornment={
+                  <InputAdornment position="start">$</InputAdornment>
+                }
+                name="price"
+              />
+            </FormControl>
+            <FormControl sx={{ m: 1 }} variant="filled">
+              {/* <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel> */}
+              <FormLabel colors={colors} fontSizes={fontSizes} htmlFor="">
+                Down Payment
+              </FormLabel>
+              <FilledInput
+                id="filled-adornment-amount"
+                value={values.downPayment}
+                onChange={handleChange}
+                name="downPayment"
+                startAdornment={
+                  <InputAdornment position="start">$</InputAdornment>
+                }
+              />
+            </FormControl>
+            <FormControl sx={{ m: 1 }} variant="filled">
+              {/* <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel> */}
+              <FormLabel colors={colors} fontSizes={fontSizes} htmlFor="">
+                Interest Rate
+              </FormLabel>
+              <FilledInput
+                id="filled-adornment-amount"
+                value={values.interestRate}
+                onChange={handleChange}
+                name="interestRate"
+                endAdornment={<InputAdornment position="end">%</InputAdornment>}
+              />
+            </FormControl>
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
+              <FormLabel colors={colors} fontSizes={fontSizes} htmlFor="">
+                Loan Term
+              </FormLabel>
+              <Select
+                value={values.loanTerm}
+                onChange={handleChange}
+                name="loanTerm"
+                inputProps={{ "aria-label": "Without label" }}
+              >
+                <MenuItem value={30}>30 years</MenuItem>
+                <MenuItem value={20}>20 years</MenuItem>
+                <MenuItem value={15}>15 years</MenuItem>
+                <MenuItem value={10}>10 years</MenuItem>
+              </Select>
+            </FormControl>
+
+            <div className="button-group">
+              <FormControl className="get-results">
+                <FormButton
+                  onClick={() => getResults()}
+                  variant="contained"
+                  colors={colors}
+                >
+                  Get Results
+                </FormButton>
+              </FormControl>
+
+              <FormControl className="save-results">
+                <FormButton colors={colors} variant="contained">
+                  Save Results
+                </FormButton>
+              </FormControl>
+            </div>
+          </FormDiv>
         </FormContainer>
       )}
     </ThemeContext.Consumer>
   );
-  // height: ${props.device == "desktop" ? "80%" : "70%"};
-  function textFieldForm(colors, fontSizes) {
-    return (
-      <FormDiv className="textfield-form">
-        {/* <div className="form textfield-form"> */}
-        <FormHeader colors={colors} fontSizes={fontSizes}>
-          Mortgage Calculator
-        </FormHeader>
-        <FormControl sx={{ m: 1 }} variant="filled">
-          {/* <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel> */}
-          <FormLabel colors={colors} fontSizes={fontSizes} htmlFor="">
-            Home Price
-          </FormLabel>
-          <FilledInput
-            id="filled-adornment-amount"
-            value={values.price}
-            onChange={handleChange}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-            name="price"
-          />
-        </FormControl>
-        <FormControl sx={{ m: 1 }} variant="filled">
-          {/* <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel> */}
-          <FormLabel colors={colors} fontSizes={fontSizes} htmlFor="">
-            Down Payment
-          </FormLabel>
-          <FilledInput
-            id="filled-adornment-amount"
-            value={values.downPayment}
-            onChange={handleChange}
-            name="downPayment"
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-          />
-        </FormControl>
-        <FormControl sx={{ m: 1 }} variant="filled">
-          {/* <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel> */}
-          <FormLabel colors={colors} fontSizes={fontSizes} htmlFor="">
-            Interest Rate
-          </FormLabel>
-          <FilledInput
-            id="filled-adornment-amount"
-            value={values.interestRate}
-            onChange={handleChange}
-            name="interestRate"
-            endAdornment={<InputAdornment position="end">%</InputAdornment>}
-          />
-        </FormControl>
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
-          <FormLabel colors={colors} fontSizes={fontSizes} htmlFor="">
-            Loan Term
-          </FormLabel>
-          <Select
-            value={values.loanTerm}
-            onChange={handleChange}
-            name="loanTerm"
-            inputProps={{ "aria-label": "Without label" }}
-          >
-            <MenuItem value={30}>30 years</MenuItem>
-            <MenuItem value={20}>20 years</MenuItem>
-            <MenuItem value={15}>15 years</MenuItem>
-            <MenuItem value={10}>10 years</MenuItem>
-          </Select>
-        </FormControl>
-
-        <div className="button-group">
-          <FormControl className="get-results">
-            <FormButton
-              onClick={() => getResults(values)}
-              variant="contained"
-              colors={colors}
-            >
-              Get Results
-            </FormButton>
-          </FormControl>
-
-          <FormControl className="save-results">
-            <FormButton colors={colors} variant="contained">
-              Save Results
-            </FormButton>
-          </FormControl>
-        </div>
-      </FormDiv>
-    );
-  }
-
-  function sliderForm() {
-    return (
-      <div className="form form-sliders">
-        <Slider
-          size="small"
-          defaultValue={70}
-          aria-label="Small"
-          valueLabelDisplay="auto"
-        />
-      </div>
-    );
-  }
 }
 
 export default Form;

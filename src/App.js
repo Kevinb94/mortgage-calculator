@@ -5,7 +5,7 @@ import useSize from './hooks/useSize';
 import styled  from 'styled-components';
 import ThemeJson from './assets/theme.json';
 import {ThemeContext, themes} from './context/theme-context';
-import FormContext from "./context/form-context";
+import { FormProvider } from "./context/form-context";
 import  MortgageCalculator  from './pages/mortgage-calculator';
 // import MortgageCalculatorDetailed from './layouts/detailed/mortgage-calculator-detailed.component';
 import { useNavigate, Navigate } from "react-router-dom";
@@ -62,7 +62,7 @@ const App = (props) => {
 
     <>
         <ThemeContext.Provider value={theme}>
-          <FormContext.Provider value={value}>
+          <FormProvider>
             <AppDiv theme={theme} className="App" ref={target} style={{width: "100%"}}>
             <div className={`${getDeviceType()}`} >
               {/* <MortgageCalculator getDeviceType={getDeviceType}></MortgageCalculator> */}
@@ -82,7 +82,7 @@ const App = (props) => {
 
             </AppDiv>
 
-          </FormContext.Provider>
+          </FormProvider>
         </ThemeContext.Provider>
     </>
 
